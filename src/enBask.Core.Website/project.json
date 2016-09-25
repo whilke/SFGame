@@ -42,7 +42,8 @@
       "type": "build"
     },
     "Microsoft.AspNetCore.Session": "1.0.0",
-    "enBask.ASF.Tablestorage": "1.0.2"
+    "enBask.ASF.Tablestorage": "1.0.2",
+    "Microsoft.AspNet.Identity.Core": "2.2.1"
   },
 
   "tools": {

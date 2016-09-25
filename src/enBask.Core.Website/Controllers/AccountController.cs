@@ -12,6 +12,8 @@ using enBask.Core.Website.Models;
 using enBask.Core.Website.Models.AccountViewModels;
 using enBask.Core.Website.Services;
 using enBask.Core.Website.Authentication;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Http.Authentication;
 
 namespace enBask.Core.Website.Controllers
 {
@@ -61,6 +63,19 @@ namespace enBask.Core.Website.Controllers
                 if (result != null)
                 {
                     _logger.LogInformation(1, "User logged in.");
+
+                    var ident = new ClaimsIdentity(
+                    new[] { 
+                        // adding following 2 claim just for supporting default antiforgery provider
+                        new Claim(ClaimTypes.NameIdentifier, result.Username),
+                        new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+                        new Claim(ClaimTypes.Name,result.Username),
+
+                    },
+                    DefaultAuthenticationTypes.ApplicationCookie);
+                    var p = new ClaimsPrincipal(ident);
+                    await HttpContext.Authentication.SignInAsync("MyCookieAuth", p);
                     return RedirectToLocal(returnUrl);
                 }              
                 else
@@ -113,7 +128,7 @@ namespace enBask.Core.Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
-//            await _signInManager.SignOutAsync();
+            await HttpContext.Authentication.SignOutAsync("MyCookieAuth");
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
@@ -421,7 +436,7 @@ namespace enBask.Core.Website.Controllers
         */
         #region Helpers
 
-        private void AddErrors(IdentityResult result)
+        private void AddErrors(Microsoft.AspNetCore.Identity.IdentityResult result)
         {
             if (result == null) return;
             foreach (var error in result.Errors)

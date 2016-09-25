@@ -68,5 +68,35 @@ namespace enBask.Core.Website.Authentication
             }
             return null;
         }
+
+        public async Task DeleteByName(string username)
+        {
+            var result = await _tableClient.GetAsync<UserEntity>(username, username);
+            if (result.Response == ASF.Tablestorage.Shared.StorageResponseCodes.Success)
+            {
+                await _tableClient.DeleteAsync<UserEntity>(result.Context);
+
+                result = await _tableClient.GetAsync<UserEntity>(result.Context.UserId, result.Context.UserId);
+                if (result.Response == ASF.Tablestorage.Shared.StorageResponseCodes.Success)
+                {
+                    await _tableClient.DeleteAsync<UserEntity>(result.Context);
+                }
+            }
+        }
+
+        public async Task DeleteById(string userId)
+        {
+            var result = await _tableClient.GetAsync<UserEntity>(userId, userId);
+            if (result.Response == ASF.Tablestorage.Shared.StorageResponseCodes.Success)
+            {
+                await _tableClient.DeleteAsync<UserEntity>(result.Context);
+
+                result = await _tableClient.GetAsync<UserEntity>(result.Context.Username, result.Context.Username);
+                if (result.Response == ASF.Tablestorage.Shared.StorageResponseCodes.Success)
+                {
+                    await _tableClient.DeleteAsync<UserEntity>(result.Context);
+                }
+            }
+        }
     }
 }

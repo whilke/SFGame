@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using enBask.Core.Website.Services;
 using enBask.Core.Website.Authentication;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.AspNetCore.Http;
 
 namespace enBask.Core.Website
 {
@@ -64,6 +65,14 @@ namespace enBask.Core.Website
             }
 
             app.UseStaticFiles();
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = "MyCookieAuth",
+                LoginPath = new PathString("/Account/Login/"),
+                AccessDeniedPath = new PathString("/Account/Forbidden/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
 
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
