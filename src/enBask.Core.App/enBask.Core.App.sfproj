@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\build\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.2.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('..\..\build\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.2.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>a0fa040f-c203-41b1-b76c-fce0a3dec2ab</ProjectGuid>
+    <ProjectVersion>1.2</ProjectVersion>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ApplicationPackageRoot\ApplicationManifest.xml" />
+    <None Include="ApplicationParameters\Cloud.xml" />
+    <None Include="ApplicationParameters\Local.1Node.xml" />
+    <None Include="ApplicationParameters\Local.5Node.xml" />
+    <None Include="PublishProfiles\Cloud.xml" />
+    <None Include="PublishProfiles\Local.1Node.xml" />
+    <None Include="PublishProfiles\Local.5Node.xml" />
+    <None Include="Scripts\Deploy-FabricApplication.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\en-us\Microsoft.ServiceFabric.Internal.Strings.resources.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\en-us\System.Fabric.Strings.resources.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\enBask.ASF.Tablestorage.Service.exe" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\enBask.ASF.Tablestorage.Service.exe.config" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\enBask.ASF.Tablestorage.Service.pdb" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\enBask.ASF.Tablestorage.Shared.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\enBask.ASF.Tablestorage.Shared.pdb" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Data.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Data.Interfaces.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Data.Interfaces.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Data.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Internal.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Internal.Strings.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Services.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Microsoft.ServiceFabric.Services.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Newtonsoft.Json.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\Newtonsoft.Json.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\ServiceFabricServiceModel.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\System.Fabric.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\System.Fabric.Strings.dll" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Code\System.Fabric.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\Config\Settings.xml" />
+    <Content Include="ApplicationPackageRoot\enBask.ASF.Tablestorage.ServicePkg\ServiceManifest.xml" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\enBask.Core.Website\enBask.Core.Website.xproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <PropertyGroup>
+    <ApplicationProjectTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.targets</ApplicationProjectTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(ApplicationProjectTargetsPath)" Condition="Exists('$(ApplicationProjectTargetsPath)')" />
+  <Import Project="..\..\build\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.2.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets" Condition="Exists('..\..\build\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.2.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" />
+</Project>
