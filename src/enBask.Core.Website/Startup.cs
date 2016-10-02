@@ -42,6 +42,8 @@ namespace enBask.Core.Website
 
             services.Add(ServiceDescriptor.Singleton<IDistributedCache, enBaskTableSessionCache>());
             services.Add(ServiceDescriptor.Singleton(new MyUserManager()));
+            services.Add(ServiceDescriptor.Singleton<IHttpContextAccessor, HttpContextAccessor>());
+
             services.AddSession();
         }
 

@@ -1,5 +1,6 @@
 ﻿using enBask.ASF.Tablestorage.Client;
 using enBask.Core.Website.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,8 @@ namespace enBask.Core.Website.Authentication
 
         public async Task<ApplicationUser> CreateUser(string username, string password)
         {
-            var hash = password; //todo: hash password;
             var user = new UserEntity();
-            user.CreateUser(username, hash);
+            user.CreateUser(username, password);
 
             user.SetAsUserNameRecord();
             await _tableClient.AddAsync<UserEntity>(user);
@@ -98,5 +98,23 @@ namespace enBask.Core.Website.Authentication
                 }
             }
         }
+
+        #region helpers
+        public bool IsSessionValid(IHttpContextAccessor HttpContextAccessor)
+        {
+            var context = HttpContextAccessor.HttpContext;
+            return context.User.Identity.IsAuthenticated;
+        }
+
+        public string GetSessionUserName(IHttpContextAccessor HttpContextAccessor)
+        {
+            var context = HttpContextAccessor.HttpContext;
+            var valid = context.User.Identity.IsAuthenticated;
+            if (!valid) return string.Empty;
+
+            return context.User.Identity.Name;
+        }
+
+        #endregion
     }
 }

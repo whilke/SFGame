@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using enBask.ASF.Tablestorage.Shared;
+using enBask.Core.Website.Authentication;
 
 namespace enBask.Core.Website.Models
 {
@@ -27,6 +28,9 @@ namespace enBask.Core.Website.Models
         public string HashCode
         { get; set; }
 
+        public string Salt
+        { get; set; }
+
         public UserEntity() { }
 
         public void SetAsUserNameRecord()
@@ -43,18 +47,22 @@ namespace enBask.Core.Website.Models
             ETag = "";
         }
 
-        public void CreateUser(string username, string hash)
+        public void CreateUser(string username, string password)
         {
             UserId = Guid.NewGuid().ToString().Replace("-", "");
             Username = username;
+
+            var salt = PasswordHelper.GenerateSalt(32);
+            var hash = PasswordHelper.HashPassword(password, salt);
+
             HashCode = hash;
+            Salt = salt;
         }
 
         public ApplicationUser ValidateUser(string password)
         {
-            string local_hash = password; //todo: hash password
-
-            if (local_hash == HashCode)
+            bool matched = PasswordHelper.doesPasswordMatch(password, Salt, HashCode);
+            if (matched)
             {
                 return new ApplicationUser
                 {
