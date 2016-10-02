@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\enBask.Core.Website\enBask.Core.Website.xproj" />
+    <ProjectReference Include="..\enBask.Core.GameManager\enBask.Core.GameManager.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>

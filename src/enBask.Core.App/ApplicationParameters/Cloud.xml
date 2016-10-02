@@ -2,5 +2,8 @@
 <Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/enBask.Core.App" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
     <Parameter Name="Website_InstanceCount" Value="-1" />
+    <Parameter Name="GameManager_MinReplicaSetSize" Value="2" />
+    <Parameter Name="GameManager_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="GameManager_PartitionCount" Value="3" />
   </Parameters>
 </Application>

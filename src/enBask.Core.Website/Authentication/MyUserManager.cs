@@ -1,4 +1,5 @@
 ﻿using enBask.ASF.Tablestorage.Client;
+using enBask.Core.Shared.Clients;
 using enBask.Core.Website.Models;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -31,6 +32,9 @@ namespace enBask.Core.Website.Authentication
 
             user.SetAsUserIdRecord();
             await _tableClient.AddAsync<UserEntity>(user);
+
+            GameManagerClient client = new GameManagerClient();
+            var session = await client.Find("test");
 
             return user.ValidateUser(password);
         }
