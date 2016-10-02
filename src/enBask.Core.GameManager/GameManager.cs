@@ -10,6 +10,8 @@ using Microsoft.ServiceFabric.Services.Runtime;
 using enBask.Core.Shared.Contracts;
 using enBask.Core.Shared;
 using Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime;
+using enBask.Core.GameManager.interfaces;
+using Microsoft.ServiceFabric.Data;
 
 namespace enBask.Core.GameManager
 {
@@ -18,14 +20,17 @@ namespace enBask.Core.GameManager
     /// </summary>
     internal sealed class GameManager : StatefulService, IGameManager
     {
-        public GameManager(StatefulServiceContext context)
-            : base(context)
-        { }
+        ILifetimeManager _lifetimeMgr;
+        public GameManager(StatefulServiceContext context, ILifetimeManager lifeManager, IReliableStateManagerReplica stateMgr)
+            : base(context, stateMgr)
+        {
+            _lifetimeMgr = lifeManager;
+        }
 
         #region IGameManager
-        public Task<GameSession> Create(string partitionId)
+        public async Task<GameSession> Create(string partitionId)
         {
-            throw new NotImplementedException();
+            return await _lifetimeMgr.CreateAsync("MafiaGame", partitionId);
         }
 
         public Task<bool> Destroy(GameSession session)

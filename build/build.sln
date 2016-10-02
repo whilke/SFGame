@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enBask.Core.GameManager", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enBask.Core.Shared", "..\src\enBask.Core.Shared\enBask.Core.Shared.csproj", "{82DA24F4-82CA-47E2-93C2-AA41C17F7B62}"
 EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "enBask.Core.GameApp", "..\src\enBask.Core.GameApp\enBask.Core.GameApp.sfproj", "{A4E795F5-3BC5-4CF1-8464-221BF318BD25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enBask.Core.MafiaGameService", "..\src\enBask.Core.MafiaGameService\enBask.Core.MafiaGameService.csproj", "{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,20 @@ Global
 		{82DA24F4-82CA-47E2-93C2-AA41C17F7B62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82DA24F4-82CA-47E2-93C2-AA41C17F7B62}.Release|x64.ActiveCfg = Release|Any CPU
 		{82DA24F4-82CA-47E2-93C2-AA41C17F7B62}.Release|x64.Build.0 = Release|Any CPU
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Debug|x64.ActiveCfg = Debug|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Debug|x64.Build.0 = Debug|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Debug|x64.Deploy.0 = Debug|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Release|Any CPU.ActiveCfg = Release|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Release|x64.ActiveCfg = Release|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Release|x64.Build.0 = Release|x64
+		{A4E795F5-3BC5-4CF1-8464-221BF318BD25}.Release|x64.Deploy.0 = Release|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Debug|x64.ActiveCfg = Debug|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Debug|x64.Build.0 = Debug|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Release|Any CPU.ActiveCfg = Release|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Release|x64.ActiveCfg = Release|x64
+		{E1BBFD6D-E5A2-4136-A53A-449AF21280E4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

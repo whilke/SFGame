@@ -34,7 +34,7 @@ namespace enBask.Core.Website.Authentication
             await _tableClient.AddAsync<UserEntity>(user);
 
             GameManagerClient client = new GameManagerClient();
-            var session = await client.Find("test");
+            var session = await client.Create("test");
 
             return user.ValidateUser(password);
         }

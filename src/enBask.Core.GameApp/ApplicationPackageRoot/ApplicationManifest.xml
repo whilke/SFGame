@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="enBask.Core.GameAppType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="MafiaGameService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="MafiaGameService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="MafiaGameService_TargetReplicaSetSize" DefaultValue="3" />
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="enBask.Core.MafiaGameServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <DefaultServices>
+    <Service Name="GameInstance">
+      <StatefulService ServiceTypeName="MafiaGameServiceType">
+        <UniformInt64Partition PartitionCount="1" LowKey="0" HighKey="0" />
+      </StatefulService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>
